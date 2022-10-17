@@ -1,0 +1,35 @@
+import { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { api } from "../services/api";
+
+export const UserContext = createContext({});
+
+export const UserProvider = ({ children }) => {
+  const [user, setUser] = useState({});
+  const navigate = useNavigate();
+
+  const loginUser = async (data) => {
+    try {
+      const request = await api.post("/sessions", data);
+      localStorage.setItem("@KENZIE_HUB:TOKEN", request.data.token);
+      localStorage.setItem("@KENZIE_HUB:USER_ID", request.data.user.id);
+      setUser(request.data.user);
+      //toast
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error);
+      //toast com error.response.data.message
+    }
+  };
+
+  const registerUser = () => {
+    console.log("Registrou o usuário");
+  };
+
+  return (
+    <UserContext.Provider value={{ user, setUser, loginUser, registerUser }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
