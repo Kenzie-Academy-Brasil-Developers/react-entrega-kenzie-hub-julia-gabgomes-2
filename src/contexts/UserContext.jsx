@@ -23,8 +23,16 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  const registerUser = () => {
-    console.log("Registrou o usuário");
+  const registerUser = async (data) => {
+    console.log("Registrou o usuário", data);
+    try {
+      const response = await api.post("/users", data);
+      console.log(response);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      //toast com error.response.data.message
+    }
   };
 
   return (
