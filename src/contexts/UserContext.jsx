@@ -7,15 +7,16 @@ export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
+  const [techs, setTechs] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("acionou o useEffect");
+    // console.log("acionou o useEffect");
     const loadUser = async () => {
       const token = localStorage.getItem("@KENZIE_HUB:TOKEN");
-      console.log(token);
+      // console.log(token);
 
       if (token) {
         try {
@@ -23,11 +24,12 @@ export const UserProvider = ({ children }) => {
 
           const request = await api.get("/profile");
           setUser(request.data);
-          console.error("deu certo o token", request.data);
+          setTechs(request.data.techs);
+          // console.error("deu certo o token", request.data);
         } catch (error) {
           localStorage.removeItem("@KENZIE_HUB:TOKEN");
           localStorage.removeItem("@KENZIE_HUB:USER_ID");
-          console.error("deu erro no token", error);
+          // console.error("deu erro no token", error);
         }
       }
       setLoading(false);
@@ -65,7 +67,15 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ user, setUser, loginUser, registerUser, loading }}
+      value={{
+        user,
+        setUser,
+        loginUser,
+        registerUser,
+        loading,
+        techs,
+        setTechs,
+      }}
     >
       {children}
     </UserContext.Provider>
