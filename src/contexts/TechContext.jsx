@@ -4,7 +4,6 @@ import { api } from "../services/api";
 
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
-import { set } from "react-hook-form";
 
 export const TechContext = createContext({});
 
