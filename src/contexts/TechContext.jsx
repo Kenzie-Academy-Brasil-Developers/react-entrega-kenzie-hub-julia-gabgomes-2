@@ -24,7 +24,7 @@ export const TechProvider = ({ children }) => {
 
   const deleteTech = async (id) => {
     try {
-      const request = await api.delete(`/users/techs/${id}`);
+      await api.delete(`/users/techs/${id}`);
       setTechs(techs.filter((element) => element.id !== id));
       notifySuccess("A tecnologia excluída com sucesso!");
     } catch (error) {

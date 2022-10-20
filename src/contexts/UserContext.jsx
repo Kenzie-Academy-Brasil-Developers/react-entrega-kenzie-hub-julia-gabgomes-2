@@ -1,7 +1,8 @@
 import { createContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
+import { notifySuccess, notifyError } from "../notifications/index.js";
 
 export const UserContext = createContext({});
 
@@ -24,11 +25,9 @@ export const UserProvider = ({ children }) => {
           setUser(request.data);
           setTechs(request.data.techs);
           navigate("/dashboard", { replace: true });
-          // console.error("deu certo o token", request.data);
         } catch (error) {
           localStorage.removeItem("@KENZIE_HUB:TOKEN");
           localStorage.removeItem("@KENZIE_HUB:USER_ID");
-          // console.error("deu erro no token", error);
         }
       }
 
@@ -46,11 +45,10 @@ export const UserProvider = ({ children }) => {
       localStorage.setItem("@KENZIE_HUB:USER_ID", request.data.user.id);
       setUser(request.data.user);
       setTechs(request.data.user.techs);
-      //toast
+      notifySuccess("Login realizado com sucesso!");
       navigate("/dashboard", { replace: true });
     } catch (error) {
-      console.log(error);
-      //toast com error.response.data.message
+      notifyError(`${error.response.data.message}`);
     }
   };
 
@@ -58,11 +56,10 @@ export const UserProvider = ({ children }) => {
     console.log("Registrou o usuário", data);
     try {
       const response = await api.post("/users", data);
-      console.log(response);
       navigate("/");
+      notifySuccess("Cadastro realizado com sucesso! Faça seu login");
     } catch (error) {
-      console.log(error);
-      //toast com error.response.data.message
+      notifyError(`${error.response.data.message}`);
     }
   };
 
