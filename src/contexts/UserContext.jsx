@@ -6,17 +6,15 @@ import { api } from "../services/api";
 export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [techs, setTechs] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    // console.log("acionou o useEffect");
     const loadUser = async () => {
       const token = localStorage.getItem("@KENZIE_HUB:TOKEN");
-      // console.log(token);
 
       if (token) {
         try {
@@ -25,6 +23,7 @@ export const UserProvider = ({ children }) => {
           const request = await api.get("/profile");
           setUser(request.data);
           setTechs(request.data.techs);
+          navigate("/dashboard", { replace: true });
           // console.error("deu certo o token", request.data);
         } catch (error) {
           localStorage.removeItem("@KENZIE_HUB:TOKEN");
@@ -32,6 +31,7 @@ export const UserProvider = ({ children }) => {
           // console.error("deu erro no token", error);
         }
       }
+
       setLoading(false);
     };
 
@@ -45,6 +45,7 @@ export const UserProvider = ({ children }) => {
       localStorage.setItem("@KENZIE_HUB:TOKEN", request.data.token);
       localStorage.setItem("@KENZIE_HUB:USER_ID", request.data.user.id);
       setUser(request.data.user);
+      setTechs(request.data.user.techs);
       //toast
       navigate("/dashboard", { replace: true });
     } catch (error) {

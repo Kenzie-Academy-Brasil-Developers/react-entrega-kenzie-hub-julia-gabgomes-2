@@ -3,7 +3,7 @@ import { TechContext } from "../../contexts/TechContext";
 
 import { useForm } from "react-hook-form";
 
-export const TechModal = () => {
+export const TechModal = ({ setIsModalOpen }) => {
   const { registerTech } = useContext(TechContext);
 
   const {
@@ -20,7 +20,7 @@ export const TechModal = () => {
     <div>
       <div>
         <h2>Cadastrar tecnologia</h2>
-        <span>X</span>
+        <span onClick={() => setIsModalOpen(false)}>X</span>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>
