@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginSchema } from "../../validations/userValidations";
 
 import { StyledText } from "../../styles/typography";
 import { Label } from "../../styles/label";
@@ -15,7 +17,9 @@ export const FormLogin = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
 
   const onSubmit = (data) => {
     loginUser(data);
@@ -38,6 +42,7 @@ export const FormLogin = () => {
             {...register("email")}
           />
         </Label>
+        <p>{errors.email?.message}</p>
         <Label>
           <StyledText typo="headline" color="gray-0" tag="h3">
             Senha
@@ -49,6 +54,7 @@ export const FormLogin = () => {
             {...register("password")}
           />
         </Label>
+        <p>{errors.password?.message}</p>
         <ButtonPrimary type="submit">Entrar</ButtonPrimary>
       </form>
     </div>
