@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { registerSchema } from "../../validations/userValidations";
 
 import { StyledText } from "../../styles/typography";
 import { Label } from "../../styles/label";
@@ -14,8 +16,12 @@ export const FormRegister = () => {
   const {
     register,
     handleSubmit,
-    // formState: { errors },
-  } = useForm();
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(registerSchema),
+  });
+
+  console.log(errors);
 
   const onSubmit = (data) => registerUser(data);
 
@@ -32,7 +38,7 @@ export const FormRegister = () => {
           {...register("name")}
         />
       </Label>
-
+      <p>{errors.name?.message}</p>
       <Label>
         <StyledText typo="headline" color="gray-0" tag="h3">
           E-mail
@@ -44,7 +50,7 @@ export const FormRegister = () => {
           {...register("email")}
         />
       </Label>
-
+      <p>{errors.email?.message}</p>
       <Label>
         <StyledText typo="headline" color="gray-0" tag="h3">
           Senha
@@ -56,7 +62,7 @@ export const FormRegister = () => {
           {...register("password")}
         />
       </Label>
-
+      <p>{errors.password?.message}</p>
       <Label>
         <StyledText typo="headline" color="gray-0" tag="h3">
           Confirmar senha
@@ -68,7 +74,7 @@ export const FormRegister = () => {
           {...register("confirmPassword")}
         />
       </Label>
-
+      <p>{errors.confirmPassword?.message}</p>
       <Label>
         <StyledText typo="headline" color="gray-0" tag="h3">
           Bio
@@ -80,7 +86,7 @@ export const FormRegister = () => {
           {...register("bio")}
         />
       </Label>
-
+      <p>{errors.bio?.message}</p>
       <Label>
         <StyledText typo="headline" color="gray-0" tag="h3">
           Contato
@@ -92,7 +98,7 @@ export const FormRegister = () => {
           {...register("contact")}
         />
       </Label>
-
+      <p>{errors.contact?.message}</p>
       <Label>
         <StyledText typo="headline" color="gray-0" tag="h3">
           Selecionar módulo
