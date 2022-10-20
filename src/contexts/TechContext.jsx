@@ -5,20 +5,20 @@ import { api } from "../services/api";
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
 
+import { notifySuccess, notifyError } from "../notifications/index.js";
+
 export const TechContext = createContext({});
 
 export const TechProvider = ({ children }) => {
   const { techs, setTechs } = useContext(UserContext);
 
-  console.log(techs);
-
   const registerTech = async (data) => {
     try {
       const request = await api.post("/users/techs", data);
       setTechs((previousTechs) => [...previousTechs, request.data]);
+      notifySuccess("A tecnologia foi registrada com sucesso!");
     } catch (error) {
-      // console.log(error);
-      //toast => não foi possível excluir a tecnologia, tente novamente
+      notifyError(`${error.response.data.message}`);
     }
   };
 
@@ -26,9 +26,9 @@ export const TechProvider = ({ children }) => {
     try {
       const request = await api.delete(`/users/techs/${id}`);
       setTechs(techs.filter((element) => element.id !== id));
+      notifySuccess("A tecnologia excluída com sucesso!");
     } catch (error) {
-      // console.log(error);
-      //toast => não foi possível excluir a tecnologia, tente novamente
+      notifyError(`${error.response.data.message}`);
     }
   };
 
