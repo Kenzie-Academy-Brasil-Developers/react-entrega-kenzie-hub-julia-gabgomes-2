@@ -26,7 +26,7 @@ export const FormRegister = () => {
           Nome
         </StyledText>
         <Input
-          type="string"
+          type="text"
           id="name"
           placeholder="Digite aqui seu nome"
           {...register("name")}
@@ -74,7 +74,7 @@ export const FormRegister = () => {
           Bio
         </StyledText>
         <Input
-          type="string"
+          type="text"
           id="bio"
           placeholder="Digite aqui sua bio"
           {...register("bio")}
@@ -86,7 +86,7 @@ export const FormRegister = () => {
           Contato
         </StyledText>
         <Input
-          type="string"
+          type="text"
           id="contact"
           placeholder="Digite aqui seu contato"
           {...register("contact")}
