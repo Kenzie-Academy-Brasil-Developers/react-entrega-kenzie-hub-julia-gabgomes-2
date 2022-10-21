@@ -35,8 +35,13 @@ export const GlobalStyle = createGlobalStyle`
         --gray-2: #343B41;
         --gray-3: #212529;
         --gray-4: #121214;
-        --color-feedback-success: #3FE864;
-        --color-feedback-negative: #E83F5B;
+
+        --toastify-color-success: #3FE864;
+        --toastify-color-error: #E83F5B;
+        --toastify-color-light: #343B41;
+
+        --toastify-font-family: 'Inter', sans-serif;
+        --toastify-text-color-light: #F8F9FA;
     }
 
     body{
