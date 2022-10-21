@@ -53,7 +53,6 @@ export const UserProvider = ({ children }) => {
   };
 
   const registerUser = async (data) => {
-    console.log("Registrou o usuário", data);
     try {
       const response = await api.post("/users", data);
       navigate("/");

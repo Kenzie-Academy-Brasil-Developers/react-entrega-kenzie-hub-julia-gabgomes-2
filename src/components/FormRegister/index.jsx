@@ -9,6 +9,7 @@ import { StyledText } from "../../styles/typography";
 import { Label } from "../../styles/label";
 import { Input } from "../../styles/input";
 import { ButtonPrimary } from "../../styles/button.js";
+import { RegisterForm } from "./style";
 
 export const FormRegister = () => {
   const { registerUser } = useContext(UserContext);
@@ -21,12 +22,10 @@ export const FormRegister = () => {
     resolver: yupResolver(registerSchema),
   });
 
-  console.log(errors);
-
   const onSubmit = (data) => registerUser(data);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <RegisterForm onSubmit={handleSubmit(onSubmit)}>
       <Label>
         <StyledText typo="headline" color="gray-0" tag="h3">
           Nome
@@ -120,6 +119,6 @@ export const FormRegister = () => {
 
         <ButtonPrimary type="submit">Cadastrar</ButtonPrimary>
       </Label>
-    </form>
+    </RegisterForm>
   );
 };
