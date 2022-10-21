@@ -4,7 +4,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 
 import logo from "../../assets/logo.svg";
-import { ContainerRow, Navbar } from "./style";
+import { Navbar, NavContainer } from "./style";
 import { ButtonSmall } from "../../styles/button";
 
 export const DashNavbar = () => {
@@ -20,12 +20,12 @@ export const DashNavbar = () => {
 
   return (
     <Navbar>
-      <ContainerRow>
+      <NavContainer>
         <img src={logo} alt="Logo da empresa Kenzie Hub" />
         <ButtonSmall type="button" onClick={() => handleClick()}>
           Sair
         </ButtonSmall>
-      </ContainerRow>
+      </NavContainer>
     </Navbar>
   );
 };
