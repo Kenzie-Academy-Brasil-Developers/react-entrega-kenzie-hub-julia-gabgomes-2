@@ -47,6 +47,13 @@ export const StyledText = styled(BaseText)`
           font-style: italic;
         `;
 
+      case "helper-text":
+        return css`
+          font-weight: 400;
+          font-size: 10px;
+          line-height: 0px;
+        `;
+
       default:
         return css``;
     }

@@ -9,6 +9,7 @@ export const BaseText = ({ children, className, tag }) => {
       {tag === "h4" && <h4 className={className}>{children}</h4>}
       {tag === "h5" && <h5 className={className}>{children}</h5>}
       {tag === "h6" && <h6 className={className}>{children}</h6>}
+      {tag === "p" && <span className={className}>{children}</span>}
       {tag === "span" && <span className={className}>{children}</span>}
     </>
   );
