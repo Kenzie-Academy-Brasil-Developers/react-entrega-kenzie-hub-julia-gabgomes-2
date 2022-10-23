@@ -35,6 +35,7 @@ export const UserProvider = ({ children }) => {
     };
 
     loadUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loginUser = async (data) => {
@@ -54,7 +55,7 @@ export const UserProvider = ({ children }) => {
 
   const registerUser = async (data) => {
     try {
-      const response = await api.post("/users", data);
+      await api.post("/users", data);
       navigate("/");
       notifySuccess("Cadastro realizado com sucesso! Faça seu login");
     } catch (error) {
