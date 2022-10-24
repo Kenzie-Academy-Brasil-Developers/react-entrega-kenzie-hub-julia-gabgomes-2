@@ -27,9 +27,8 @@ interface IRegisterUserData {
 
 export interface IUserTechs {
   id: string;
+  title: string;
   status: string;
-  created_at: string;
-  updated_at: string;
 }
 
 export interface IUser {
@@ -40,7 +39,7 @@ export interface IUser {
     course_module: string;
     bio: string;
     contact: string;
-    techs: IUserTechs[];
+    techs: IUserTechs[] | null;
   };
   token: string;
 }

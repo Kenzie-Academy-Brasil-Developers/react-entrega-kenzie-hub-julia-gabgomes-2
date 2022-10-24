@@ -21,7 +21,7 @@ interface IRegisterTechData {
   status: string;
 }
 
-interface IDeleteTechData {
+export interface IDeleteTechData {
   id: string;
 }
 
@@ -53,7 +53,7 @@ export const TechProvider = ({ children }: ITechProviderProps) => {
     try {
       await api.delete<void>(`/users/techs/${id}`);
       notifySuccess("Tecnologia excluída com sucesso!");
-      // setTechs(techs?.filter((element) => element.id !== id));
+      // setTechs(techs?.filter?(tech => Number(tech?.id): IUserTechs !== Number(id)));
     } catch (error) {
       if (axios.isAxiosError(error)) {
         notifyError(`${error.response?.data.message}`);
