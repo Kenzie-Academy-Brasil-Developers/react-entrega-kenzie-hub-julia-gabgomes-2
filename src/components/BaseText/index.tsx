@@ -1,6 +1,18 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
-export const BaseText = ({ children, className, tag }) => {
+export interface IBaseTextProps {
+  children: ReactNode;
+  className?: string;
+  tag: string;
+  typo: String;
+  color: String;
+}
+
+export const BaseText: React.FC<IBaseTextProps> = ({
+  children,
+  className,
+  tag,
+}: IBaseTextProps) => {
   return (
     <>
       {tag === "h1" && <h1 className={className}>{children}</h1>}

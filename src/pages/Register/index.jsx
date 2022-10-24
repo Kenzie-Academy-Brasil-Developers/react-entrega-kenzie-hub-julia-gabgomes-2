@@ -10,7 +10,7 @@ import {
   RegisterBox,
   RegisterBoxHeader,
 } from "./style";
-import { ButtonSmall } from "../../styles/button.js";
+import { ButtonSmall } from "../../styles/button";
 
 export const Register = () => {
   return (

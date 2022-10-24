@@ -1,13 +1,20 @@
 import { useContext } from "react";
-import { TechContext } from "../../contexts/TechContext";
+import { TechContext, IDeleteTechData } from "../../contexts/TechContext";
+import { IUser, IUserTechs } from "../../contexts/UserContext";
 
 import { CgTrash } from "react-icons/cg";
 
 import { StyledText } from "../../styles/typography";
 import { StyledLi } from "./style";
 
-export const TechList = ({ tech }) => {
+interface TechListProps {
+  tech: IUserTechs;
+}
+
+export const TechList = ({ tech }: TechListProps) => {
   const { deleteTech } = useContext(TechContext);
+
+  console.log(tech);
 
   return (
     <StyledLi>
@@ -20,9 +27,9 @@ export const TechList = ({ tech }) => {
         </StyledText>
       </div>
 
-      <button onClick={() => deleteTech(tech.id)}>
+      {/* <button type="button" onClick={() => deleteTech(tech.id)}>
         <CgTrash />
-      </button>
+      </button> */}
     </StyledLi>
   );
 };

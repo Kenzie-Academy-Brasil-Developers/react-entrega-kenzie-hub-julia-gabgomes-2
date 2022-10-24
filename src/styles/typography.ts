@@ -55,7 +55,11 @@ export const StyledText = styled(BaseText)`
         `;
 
       default:
-        return css``;
+        return css`
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 22px;
+        `;
     }
   }}
 
