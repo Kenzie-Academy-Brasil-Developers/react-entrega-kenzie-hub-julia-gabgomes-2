@@ -28,7 +28,7 @@ export const DashMain = () => {
           <ButtonSmall onClick={() => setIsModalOpen(true)}>+</ButtonSmall>
         </TechHeader>
         <StyledList>
-          {techs.map((element) => (
+          {techs?.map((element) => (
             <TechList tech={element} key={element.id} />
           ))}
         </StyledList>
