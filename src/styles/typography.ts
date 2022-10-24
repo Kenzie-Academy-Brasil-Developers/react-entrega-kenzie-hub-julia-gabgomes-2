@@ -1,15 +1,8 @@
-import { IBaseText } from "../components/BaseText";
-
 import styled, { css } from "styled-components";
 import { BaseText } from "../components/BaseText";
 
-interface ITypographyProps {
-  typo: String;
-  color: String;
-}
-
 export const StyledText = styled(BaseText)`
-  ${({ typo }: ITypographyProps) => {
+  ${({ typo }) => {
     switch (typo) {
       case "title-1":
         return css`
@@ -62,11 +55,15 @@ export const StyledText = styled(BaseText)`
         `;
 
       default:
-        return css``;
+        return css`
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 22px;
+        `;
     }
   }}
 
-  ${({ color }: ITypographyProps) => {
+  ${({ color }) => {
     switch (color) {
       case "gray-0":
         return css`

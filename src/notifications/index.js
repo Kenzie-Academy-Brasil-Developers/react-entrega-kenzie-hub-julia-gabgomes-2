@@ -1,8 +1,8 @@
 import { toast } from "react-toastify";
 
-// export const notifyLoading = () => {
-//   toast.loading("Por favor, aguarde...");
-// };
+// export interface INotifyProps {
+//   message: string;
+// }
 
 export const notifySuccess = (message) => {
   toast.success(`${message}`, {

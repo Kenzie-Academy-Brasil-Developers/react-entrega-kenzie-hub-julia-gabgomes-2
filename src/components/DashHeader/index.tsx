@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 
-import { IUser, IUserContext } from "../../contexts/UserContext";
+import { IUserContext } from "../../contexts/UserContext";
 
 import { StyledText } from "../../styles/typography";
 import { Header, DashHeaderContainer } from "./style";

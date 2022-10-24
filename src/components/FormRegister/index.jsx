@@ -8,7 +8,7 @@ import { registerSchema } from "../../validations/userValidations";
 import { StyledText } from "../../styles/typography";
 import { Label } from "../../styles/label";
 import { Input } from "../../styles/input";
-import { ButtonPrimary } from "../../styles/button.js";
+import { ButtonPrimary } from "../../styles/button";
 import { RegisterForm } from "./style";
 
 export const FormRegister = () => {

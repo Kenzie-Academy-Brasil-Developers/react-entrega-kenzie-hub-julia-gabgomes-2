@@ -8,7 +8,7 @@ import { UserContext } from "./UserContext";
 import { IUserTechs, IUserContext } from "./UserContext";
 
 import axios from "axios";
-import { notifySuccess, notifyError } from "../notifications/index.js";
+import { notifySuccess, notifyError } from "../notifications/index";
 
 //-----------------------------INTERFACES------------------------------//
 

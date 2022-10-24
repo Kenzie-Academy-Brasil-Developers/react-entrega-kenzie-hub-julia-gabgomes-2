@@ -2,7 +2,7 @@ import { createContext, useState, useEffect, ReactNode } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
-import { notifySuccess, notifyError } from "../notifications/index.js";
+import { notifySuccess, notifyError } from "../notifications/index";
 import axios from "axios";
 
 //-----------------------------INTERFACES------------------------------//
