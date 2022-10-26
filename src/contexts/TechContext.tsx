@@ -16,7 +16,7 @@ interface ITechProviderProps {
   children: ReactNode;
 }
 
-interface IRegisterTechData {
+export interface IRegisterTechData {
   title: string;
   status: string;
 }

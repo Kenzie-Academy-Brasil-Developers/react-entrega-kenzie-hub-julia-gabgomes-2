@@ -14,8 +14,6 @@ interface TechListProps {
 export const TechList = ({ tech }: TechListProps) => {
   const { deleteTech } = useContext(TechContext);
 
-  console.log(tech);
-
   return (
     <StyledLi>
       <div>

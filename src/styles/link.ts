@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-export const StyledLink = styled(Link)`
+interface IStyledLinkProps {
+  type: string;
+}
+
+export const StyledLink = styled(Link)<IStyledLinkProps>`
   ${({ type }) => {
     switch (type) {
       case "light-gray-medium":

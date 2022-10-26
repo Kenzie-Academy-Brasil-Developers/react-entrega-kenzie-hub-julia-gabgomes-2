@@ -9,10 +9,9 @@ import { StyledText } from "../../styles/typography";
 import { ButtonSmall } from "../../styles/button";
 import { Main, DashMainContainer, TechHeader, StyledList } from "./style";
 
-// interface IIsModalOpen {
-//   isModalOpen: boolean;
-//   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-// }
+export interface IDashMainProps {
+  setIsModalOpen: (value: React.SetStateAction<boolean>) => void;
+}
 
 export const DashMain = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
