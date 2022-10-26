@@ -12,6 +12,11 @@ import { ButtonPrimary } from "../../styles/button";
 import { FormLoginContainer, Form, FormFooter } from "./style";
 import { StyledLink } from "../../styles/link";
 
+interface IOnSubmit {
+  email: string;
+  password: string;
+}
+
 export const FormLogin = () => {
   const { loginUser } = useContext(UserContext);
 
@@ -19,11 +24,11 @@ export const FormLogin = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IOnSubmit>({
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: IOnSubmit) => {
     loginUser(data);
   };
 

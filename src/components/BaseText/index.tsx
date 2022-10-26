@@ -6,7 +6,6 @@ export interface IBaseTextProps {
   tag: string;
   typo: String;
   color: String;
-  onClick?: () => void;
 }
 
 export const BaseText: React.FC<IBaseTextProps> = ({
