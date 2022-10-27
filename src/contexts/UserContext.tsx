@@ -31,7 +31,7 @@ export interface IUserTechs {
   status: string;
 }
 
-export interface IUser {
+export interface IUserLogin {
   user: {
     id: string;
     name: string;
@@ -42,6 +42,16 @@ export interface IUser {
     techs: IUserTechs[] | null;
   };
   token: string;
+}
+
+export interface IUser {
+  id: string;
+  name: string;
+  email: string;
+  course_module: string;
+  bio: string;
+  contact: string;
+  techs: IUserTechs[] | null;
 }
 
 export interface IUserContext {
@@ -72,14 +82,17 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       if (token) {
         try {
           api.defaults.headers.common.authorization = `Bearer ${token}`;
+          const { data } = await api.get<IUser>("/profile");
 
-          const request = await api.get<IUser>("/profile");
-          setUser(request.data);
-          setTechs(request.data.user.techs);
+          setUser(data);
+          setTechs(data.techs);
+
           navigate("/dashboard", { replace: true });
         } catch (error) {
-          localStorage.removeItem("@KENZIE_HUB:TOKEN");
-          localStorage.removeItem("@KENZIE_HUB:USER_ID");
+          if (axios.isAxiosError(error)) {
+            localStorage.removeItem("@KENZIE_HUB:TOKEN");
+            localStorage.removeItem("@KENZIE_HUB:USER_ID");
+          }
         }
       }
 
@@ -90,14 +103,14 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const loginUser = async (data: ILoginUserData): Promise<void> => {
+  const loginUser = async (loginData: ILoginUserData): Promise<void> => {
     try {
-      const request = await api.post<IUser>("/sessions", data); //fazer desconstrução
-      api.defaults.headers.common.authorization = `Bearer ${request.data.token}`;
-      localStorage.setItem("@KENZIE_HUB:TOKEN", request.data.token);
-      localStorage.setItem("@KENZIE_HUB:USER_ID", request.data.user.id);
-      setUser(request.data);
-      setTechs(request.data.user.techs);
+      const { data } = await api.post<IUserLogin>("/sessions", loginData); //fazer desconstrução
+      api.defaults.headers.common.authorization = `Bearer ${data.token}`;
+      localStorage.setItem("@KENZIE_HUB:TOKEN", data.token);
+      localStorage.setItem("@KENZIE_HUB:USER_ID", data.user.id);
+      setUser(data.user);
+      setTechs(data.user.techs);
       notifySuccess("Login realizado com sucesso!");
       navigate("/dashboard", { replace: true });
     } catch (error) {

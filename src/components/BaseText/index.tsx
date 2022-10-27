@@ -6,6 +6,7 @@ export interface IBaseTextProps {
   tag: string;
   typo: String;
   color: String;
+  onClick?: React.MouseEventHandler<HTMLSpanElement> | undefined;
 }
 
 export const BaseText: React.FC<IBaseTextProps> = ({

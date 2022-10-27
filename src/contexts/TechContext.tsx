@@ -21,12 +21,8 @@ export interface IRegisterTechData {
   status: string;
 }
 
-export interface IDeleteTechData {
-  id: string;
-}
-
 interface ITechContext {
-  deleteTech(id: IDeleteTechData): Promise<void>;
+  deleteTech(id: string): Promise<void>;
   registerTech(data: IRegisterTechData): Promise<void>;
 }
 
@@ -49,11 +45,12 @@ export const TechProvider = ({ children }: ITechProviderProps) => {
     }
   };
 
-  const deleteTech = async (id: IDeleteTechData): Promise<void> => {
+  const deleteTech = async (id: string): Promise<void> => {
     try {
       await api.delete<void>(`/users/techs/${id}`);
       notifySuccess("Tecnologia excluída com sucesso!");
-      // setTechs(techs?.filter?(tech => Number(tech?.id): IUserTechs !== Number(id)));
+      const newTechList = techs?.filter((tech) => tech.id !== id);
+      setTechs(newTechList as IUserTechs[]);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         notifyError(`${error.response?.data.message}`);

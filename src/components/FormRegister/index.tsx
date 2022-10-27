@@ -34,10 +34,7 @@ export const FormRegister = () => {
     resolver: yupResolver(registerSchema),
   });
 
-  const onSubmit = (data: IUserRegisterData) => {
-    registerUser(data);
-    console.log(data);
-  };
+  const onSubmit = (data: IUserRegisterData) => registerUser(data);
 
   return (
     <RegisterForm onSubmit={handleSubmit(onSubmit)}>
