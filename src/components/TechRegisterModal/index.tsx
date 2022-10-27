@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { TechContext } from "../../contexts/TechContext";
 
+import { IDashMainProps } from "../DashMain";
+
 import { useForm } from "react-hook-form";
 
 import { StyledText } from "../../styles/typography";
@@ -9,16 +11,21 @@ import { Input } from "../../styles/input";
 import { ButtonPrimary } from "../../styles/button";
 import { ModalContainer, ModalBox, ModalHeader, ModalForm } from "./style";
 
-export const TechModal = ({ setIsModalOpen }) => {
+interface IOnSubmit {
+  title: string;
+  status: string;
+}
+
+export const TechModal = ({ setIsModalOpen }: IDashMainProps) => {
   const { registerTech } = useContext(TechContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<IOnSubmit>();
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: IOnSubmit) => {
     registerTech(data);
     setIsModalOpen(false);
   };
@@ -31,9 +38,9 @@ export const TechModal = ({ setIsModalOpen }) => {
             Cadastrar tecnologia
           </StyledText>
           <span
-            typo="title-3"
-            color="gray-0"
-            tag="span"
+            // typo="title-3"
+            // color="gray-0"
+            // tag="span"
             onClick={() => setIsModalOpen(false)}
           >
             X

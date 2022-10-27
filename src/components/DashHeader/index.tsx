@@ -13,10 +13,10 @@ export const DashHeader = () => {
     <Header>
       <DashHeaderContainer>
         <StyledText typo="title-1" color="gray-0" tag="h2">
-          Olá, {user?.user.name}
+          Olá, {user?.name}
         </StyledText>
         <StyledText typo="headline" color="gray-0" tag="h2">
-          {user?.user.course_module}
+          {user?.course_module}
         </StyledText>
       </DashHeaderContainer>
     </Header>

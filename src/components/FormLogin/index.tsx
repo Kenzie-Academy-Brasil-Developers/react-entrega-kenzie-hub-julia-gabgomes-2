@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../validations/userValidations";
@@ -9,8 +8,14 @@ import { loginSchema } from "../../validations/userValidations";
 import { StyledText } from "../../styles/typography";
 import { Label } from "../../styles/label";
 import { Input } from "../../styles/input";
-import { ButtonPrimary, ButtonGray } from "../../styles/button";
+import { ButtonPrimary } from "../../styles/button";
 import { FormLoginContainer, Form, FormFooter } from "./style";
+import { StyledLink } from "../../styles/link";
+
+interface IOnSubmit {
+  email: string;
+  password: string;
+}
 
 export const FormLogin = () => {
   const { loginUser } = useContext(UserContext);
@@ -19,11 +24,11 @@ export const FormLogin = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IOnSubmit>({
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: IOnSubmit) => {
     loginUser(data);
   };
 
@@ -71,9 +76,9 @@ export const FormLogin = () => {
         <StyledText typo="headline-bold" color="gray-1" tag="span">
           Ainda não possui uma conta?
         </StyledText>
-        <Link to="/register">
-          <ButtonGray type="button">Cadastre-se</ButtonGray>
-        </Link>
+        <StyledLink to="/register" type="light-gray-medium">
+          Cadastre-se
+        </StyledLink>
       </FormFooter>
     </FormLoginContainer>
   );

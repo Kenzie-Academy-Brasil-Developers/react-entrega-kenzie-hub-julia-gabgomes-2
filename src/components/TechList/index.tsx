@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { TechContext, IDeleteTechData } from "../../contexts/TechContext";
-import { IUser, IUserTechs } from "../../contexts/UserContext";
+import { TechContext } from "../../contexts/TechContext";
+import { IUserTechs } from "../../contexts/UserContext";
 
 import { CgTrash } from "react-icons/cg";
 
@@ -14,8 +14,6 @@ interface TechListProps {
 export const TechList = ({ tech }: TechListProps) => {
   const { deleteTech } = useContext(TechContext);
 
-  console.log(tech);
-
   return (
     <StyledLi>
       <div>
@@ -27,9 +25,9 @@ export const TechList = ({ tech }: TechListProps) => {
         </StyledText>
       </div>
 
-      {/* <button type="button" onClick={() => deleteTech(tech.id)}>
+      <button type="button" onClick={() => deleteTech(tech.id)}>
         <CgTrash />
-      </button> */}
+      </button>
     </StyledLi>
   );
 };

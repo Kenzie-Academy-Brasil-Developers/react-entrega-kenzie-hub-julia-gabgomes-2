@@ -11,6 +11,18 @@ import { Input } from "../../styles/input";
 import { ButtonPrimary } from "../../styles/button";
 import { RegisterForm } from "./style";
 
+interface IOnSubmit {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  bio: string;
+  contact: string;
+  course_module: string;
+}
+
+type IUserRegisterData = Omit<IOnSubmit, "confirmPassword">;
+
 export const FormRegister = () => {
   const { registerUser } = useContext(UserContext);
 
@@ -18,11 +30,11 @@ export const FormRegister = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IOnSubmit>({
     resolver: yupResolver(registerSchema),
   });
 
-  const onSubmit = (data) => registerUser(data);
+  const onSubmit = (data: IUserRegisterData) => registerUser(data);
 
   return (
     <RegisterForm onSubmit={handleSubmit(onSubmit)}>
@@ -86,6 +98,7 @@ export const FormRegister = () => {
         />
       </Label>
       <p>{errors.bio?.message}</p>
+
       <Label>
         <StyledText typo="headline" color="gray-0" tag="h3">
           Contato
@@ -98,6 +111,7 @@ export const FormRegister = () => {
         />
       </Label>
       <p>{errors.contact?.message}</p>
+
       <Label>
         <StyledText typo="headline" color="gray-0" tag="h3">
           Selecionar módulo
@@ -116,9 +130,8 @@ export const FormRegister = () => {
             Quarto módulo (Backend Avançado)
           </option>
         </select>
-
-        <ButtonPrimary type="submit">Cadastrar</ButtonPrimary>
       </Label>
+      <ButtonPrimary type="submit">Cadastrar</ButtonPrimary>
     </RegisterForm>
   );
 };
